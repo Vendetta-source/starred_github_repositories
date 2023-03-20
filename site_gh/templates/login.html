@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Sign in{% endblock %}
+{% block content %}
+    <div>
+        <div>
+            <button class="btn btn-primary btn-dark mb-2">
+                <a href="{% url 'social:begin' 'github' %}">
+                    LOGIN WITH GITHUB
+                </a>
+            </button>
+        </div>
+    </div>
+{% endblock %}

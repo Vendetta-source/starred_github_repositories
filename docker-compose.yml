@@ -1,0 +1,55 @@
+version: '3.3'
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./github_stars_issues/.env
+    ports:
+      - "5432:5432"
+    networks:
+      - site_network
+    container_name: github_starred_db
+
+  redis:
+    image: "redis:alpine"
+    command: redis-server && redis-cli flushall
+    volumes:
+      - redis:/var/lib/redis/data
+    ports:
+      - "6379:6379"
+    networks:
+      - site_network
+    container_name: github_starred_redis
+
+  backend:
+    build: .
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - static_value:/github_stars_issues/static/
+      - media_value:/github_stars_issues/media/
+      - .:/github_issues_starred
+    env_file:
+      - ./github_stars_issues/.env
+    links:
+      - postgres
+    networks:
+      - site_network
+    depends_on:
+      - redis
+      - postgres
+    container_name: github_starred_backend
+
+networks:
+  site_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  static_value:
+  media_value:
+  redis:
