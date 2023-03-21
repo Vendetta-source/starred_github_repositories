@@ -16,10 +16,16 @@
     <div class="card-body">
       <h5 class="card-title"><a href="{{ repo.url }}">{{ repo.name }}</a></h5>
       {% if repo.issues %}
-      <h6 class="card-subtitle mb-2 text-muted">{{ repo.issues|length }} issues:</h6>
+      <h6 class="card-subtitle mb-2 text-muted">{{ repo.issues|length }} open issues:</h6>
       <ul>
         {% for issue in repo.issues %}
-        <li><a href="{{ issue.url }}">{{ issue.title }}</a>   {{issue.labels}}</li>
+        <li>
+          <a href="{{ issue.url }}">{{ issue.title }}
+          </a>
+          {% for label in issue.labels %}
+          <span class="badge badge-pill badge-info">{{label}}</span>
+          {% endfor %}
+        </li>
         {% endfor %}
       </ul>
       {% endif %}

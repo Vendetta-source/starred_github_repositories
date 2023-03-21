@@ -3,11 +3,9 @@
 {% block content %}
     <div>
         <div>
-            <button class="btn btn-primary btn-dark mb-2">
-                <a href="{% url 'social:begin' 'github' %}">
-                    LOGIN WITH GITHUB
-                </a>
-            </button>
+            <a class="btn btn-primary btn-dark mb-2" href="{% url 'social:begin' 'github' %}" role="button">
+                LOGIN WITH GITHUB
+            </a>
         </div>
     </div>
 {% endblock %}
