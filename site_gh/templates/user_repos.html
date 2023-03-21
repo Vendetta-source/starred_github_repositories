@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  <h1>Starred User's repositories</h1>
+  <form method="GET">
+    <div class="form-group">
+      <label for="username">GitHub username:</label>
+      <input type="text" name="username" id="username" class="form-control" value="">
+    </div>
+    <button type="submit" class="btn btn-primary btn-dark">Search</button>
+  </form>
+  <br>
+  {% if repos %}
+  {% for repo in repos %}
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><a href="{{ repo.url }}">{{ repo.name }}</a></h5>
+    </div>
+  </div>
+  <br>
+  {% endfor %}
+  {% else %}
+  <p>No starred repositories found.</p>
+  {% endif %}
+</div>
+{% endblock %}

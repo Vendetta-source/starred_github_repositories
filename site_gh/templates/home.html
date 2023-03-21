@@ -9,6 +9,13 @@
     </div>
     <button type="submit" class="btn btn-primary btn-dark">Filter</button>
   </form>
+  <form method="GET">
+    <div class="form-group">
+      <label for="username">GitHub username:</label>
+      <input type="text" name="username" id="username" class="form-control" value="">
+    </div>
+    <button type="submit" class="btn btn-primary btn-dark">Search</button>
+  </form>
   <br>
   {% if repos %}
   {% for repo in repos %}

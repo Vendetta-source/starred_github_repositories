@@ -4,21 +4,34 @@ from django.conf import settings
 from django.core.cache import cache
 
 
-def get_starred_repositories(request):
-    extra_user_data = request.user.social_auth.get(provider='github').extra_data
-    url = f'https://api.github.com/users/{extra_user_data["login"]}/starred'
-    headers = {
-        'Accept': 'application/vnd.github+json',
-        'X-GitHub-Api-Version': '2022-11-28',
-        'Authorization': f'Bearer {extra_user_data["access_token"]}'
-    }
-    cache_key = f'starred_repos_{request.user.username}'
-    repos = cache.get(cache_key)
-    if repos is not None:
-        return repos
+def get_starred_repositories(request, username=None):
+    if not username:
+        extra_user_data = request.user.social_auth.get(provider='github').extra_data
+        url = f'https://api.github.com/users/{extra_user_data["login"]}/starred'
+        headers = {
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28',
+            'Authorization': f'Bearer {extra_user_data["access_token"]}'
+        }
+        cache_key = f'starred_repos_{request.user.username}'
+        repos = cache.get(cache_key)
+        if repos is not None:
+            return repos
+    else:
+        url = f'https://api.github.com/users/{username}/starred'
+        headers = {
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28',
+        }
+        cache_key = f'starred_repos_{username}'
+        repos = cache.get(cache_key)
+        if repos is not None:
+            return repos
 
     response = requests.get(url=url, headers=headers)
-    response.raise_for_status()
+    if response.status_code == 404:
+        repos = []
+        return repos
 
     # Извлекаем нужные поля и кэшируем ответ на 5 минут
     repos = [{'name': repo['name'], 'url': repo['html_url'], 'fullname': repo['full_name']} for repo in
