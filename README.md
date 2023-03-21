@@ -42,5 +42,7 @@ DB_PORT=5432
 Готово! Проект развернут в Docker и готов к работе!
 
 ## Фото проекта:
-![image](https://user-images.githubusercontent.com/63292154/226596833-9be2cd85-1c49-46fd-b45e-5d36802b1bbb.png)
-![image](https://user-images.githubusercontent.com/63292154/226597042-da1c909a-b877-4f66-8525-367b1c1a61c1.png)
+![image](https://user-images.githubusercontent.com/63292154/226618974-a122fe66-e5f4-4de2-a830-dae504e017c9.png)
+![image](https://user-images.githubusercontent.com/63292154/226619224-4847d8b4-d0f7-4815-ac6c-53c4482699a2.png)
+![image](https://user-images.githubusercontent.com/63292154/226619825-949adc4a-d531-4b3f-a4c7-91b53786c81c.png)
+
