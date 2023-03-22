@@ -7,7 +7,13 @@
 ----
 
 ## Настройка проекта
-1) Необходимо создать рядом с файлом `settings.py` файл `.env`.
+1) Создать GitHub OAuth App.
+
+В поле Homepage URL указать: `http://127.0.0.1:8000/`
+
+В поле Authorization callback URL указать: `http://127.0.0.1:8000/social/complete/github/`
+
+2) Необходимо создать рядом с файлом `settings.py` файл `.env`.
 Обязательные поля и пример файла `.env`:
 ```
 SECRET_KEY='some_value'
