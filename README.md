@@ -7,7 +7,13 @@
 ----
 
 ## Настройка проекта
-1) Необходимо создать рядом с файлом `settings.py` файл `.env`.
+1) Создать GitHub OAuth App.
+
+В поле Homepage URL указать: `http://127.0.0.1:8000/`
+
+В поле Authorization callback URL указать: `http://127.0.0.1:8000/social/complete/github/`
+
+2) Необходимо создать рядом с файлом `settings.py` файл `.env`.
 Обязательные поля и пример файла `.env`:
 ```
 SECRET_KEY='some_value'
@@ -27,6 +33,7 @@ DB_PORT=5432
 
 ## Запуск проекта
 1) Из основной папки проекта запустить команду сборки Docker-compose:
+
 `docker-compose up -d --build`
 
 2) Далее запустить команду применения миграций и сбора статики:
@@ -42,5 +49,8 @@ DB_PORT=5432
 Готово! Проект развернут в Docker и готов к работе!
 
 ## Фото проекта:
-!![image](https://user-images.githubusercontent.com/63292154/226596833-9be2cd85-1c49-46fd-b45e-5d36802b1bbb.png)
-![image](https://user-images.githubusercontent.com/63292154/226597042-da1c909a-b877-4f66-8525-367b1c1a61c1.png)
+
+![image](https://user-images.githubusercontent.com/63292154/226618974-a122fe66-e5f4-4de2-a830-dae504e017c9.png)
+![image](https://user-images.githubusercontent.com/63292154/226619224-4847d8b4-d0f7-4815-ac6c-53c4482699a2.png)
+![image](https://user-images.githubusercontent.com/63292154/226619825-949adc4a-d531-4b3f-a4c7-91b53786c81c.png)
+
