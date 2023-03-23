@@ -63,6 +63,7 @@ def get_issues(repo_name, request, tag=None):
     }
     response = requests.get(url, headers=headers)
     if response.status_code == 403:
+        cache.set(cache_key, None, settings.CACHE_TTL)
         return None
     # Извлекаем нужные поля и кэшируем ответ на 5 минут
     issues = [
