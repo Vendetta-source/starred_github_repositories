@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
-  <h1>Starred User's repositories</h1>
+  <h1>Starred Repositories <span class="badge badge-dark">{{len_repos}}</span></h1>
+  <h2>Total issues <span class="badge badge-dark">{{len_issues}}</span></h2>
   <form method="GET">
     <div class="form-group">
       <label for="username">GitHub username:</label>
@@ -15,6 +16,21 @@
   <div class="card">
     <div class="card-body">
       <h5 class="card-title"><a href="{{ repo.url }}">{{ repo.name }}</a></h5>
+      {% if repo.issues %}
+      <h6 class="card-subtitle mb-2 text-muted">{{ repo.issues|length }} open issues:</h6>
+      <ul>
+        {% for issue in repo.issues %}
+        {% if issue != None %}
+        <li>
+          <a href="{{ issue.url }}">{{ issue.title }}</a>
+          {% for label in issue.labels %}
+          <span class="badge badge-pill badge-info">{{label}}</span>
+          {% endfor %}
+        </li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+      {% endif %}
     </div>
   </div>
   <br>

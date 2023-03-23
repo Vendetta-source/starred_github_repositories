@@ -1,4 +1,3 @@
-import json
 import requests
 from django.conf import settings
 from django.core.cache import cache
@@ -7,7 +6,7 @@ from django.core.cache import cache
 def get_starred_repositories(request, username=None):
     if not username:
         extra_user_data = request.user.social_auth.get(provider='github').extra_data
-        url = f'https://api.github.com/users/{extra_user_data["login"]}/starred'
+        url = f'https://api.github.com/users/{extra_user_data["login"]}/starred?per_page=100'
         headers = {
             'Accept': 'application/vnd.github+json',
             'X-GitHub-Api-Version': '2022-11-28',
@@ -18,7 +17,7 @@ def get_starred_repositories(request, username=None):
         if repos is not None:
             return repos
     else:
-        url = f'https://api.github.com/users/{username}/starred'
+        url = f'https://api.github.com/users/{username}/starred?per_page=100'
         headers = {
             'Accept': 'application/vnd.github+json',
             'X-GitHub-Api-Version': '2022-11-28',
@@ -63,9 +62,8 @@ def get_issues(repo_name, request, tag=None):
         'Authorization': f'Bearer {extra_user_data["access_token"]}'
     }
     response = requests.get(url, headers=headers)
-    response.raise_for_status()
-    with open('data1.json', 'w') as f:
-        json.dump(response.json(), f)
+    if response.status_code == 403:
+        return None
     # Извлекаем нужные поля и кэшируем ответ на 5 минут
     issues = [
         {
