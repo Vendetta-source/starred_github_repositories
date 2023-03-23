@@ -50,7 +50,7 @@ DB_PORT=5432
 
 ## Фото проекта:
 
-![image](https://user-images.githubusercontent.com/63292154/226618974-a122fe66-e5f4-4de2-a830-dae504e017c9.png)
-![image](https://user-images.githubusercontent.com/63292154/226619224-4847d8b4-d0f7-4815-ac6c-53c4482699a2.png)
-![image](https://user-images.githubusercontent.com/63292154/226619825-949adc4a-d531-4b3f-a4c7-91b53786c81c.png)
+![image](https://user-images.githubusercontent.com/63292154/227281646-51eaf424-7ad9-4b6d-bf86-7115344d9558.png)
+![image](https://user-images.githubusercontent.com/63292154/227282138-71f2d26e-2dab-42be-b5e9-96862c5e7913.png)
+![image](https://user-images.githubusercontent.com/63292154/227282370-41b62877-a346-4c89-ae5a-524e926bb98d.png)
 
