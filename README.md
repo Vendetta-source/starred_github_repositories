@@ -44,7 +44,7 @@ DB_PORT=5432
 
 3) Опционально можно создать superuser'a:
 
-`winpty docker-compose exec backend python manage.py createsuperuser`
+`docker-compose exec backend python manage.py createsuperuser`
 
 Готово! Проект развернут в Docker и готов к работе!
 
